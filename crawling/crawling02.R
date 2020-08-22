@@ -1,8 +1,8 @@
 
 ## 영화 평점 크롤링링
 
-install.packages('rvest')
-install.packages('stringr')
+# install.packages('rvest')
+# install.packages('stringr')
 
 
 library(rvest)
@@ -16,7 +16,7 @@ star_list = numeric()
 date_list = character()
 
 for(page_url in 1:10){
-  page_url = 1
+  
   url = paste(main_url, page_url, sep = "") # paste 두 str을 붙인다
   content = read_html(url)
   
@@ -30,7 +30,6 @@ for(page_url in 1:10){
   date = gsub("\\.","-",date) # gsub 문자열 변환
   
   reply_list = append(reply_list, reply)  # 리스트에 추가
-  reply_list
   star_list = append(star_list, star)
   date_list = append(date_list, date)
   
@@ -40,5 +39,5 @@ for(page_url in 1:10){
 df = data.frame(date_list, reply_list, star_list) # 데이터프레임
 colnames(df) = c("날짜","댓글","평점")
 
-write.csv(df, "영화_돈_댓글.csv", row.names = FALSE)
+write.csv(df, "crawling02_결과.csv", row.names = FALSE)
 
