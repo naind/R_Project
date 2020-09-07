@@ -1,20 +1,31 @@
 install.packages('httr')
 install.packages("XML", type = "binary")
 
+
 library(httr)
-library(XML)
 library(rvest)
+library(dplyr)
+library(stringr)
 
-url <- 'https://www.megabox.co.kr/movie'
-dat <- GET(url)
-headers(dat)
+url <- 'https://finance.naver.com/item/board.nhn?code=215360&page=1'
 
-dat <- content(dat)
-dat
-dat1 <- html_nodes(dat, "#movieList .tit")
-dat1
-dat2 <- html_text(dat1)
-dat2
+ah <- httr::add_headers("User-Agent" = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36')
+GET(url, ah) %>%
+  content() %>% 
+  html_nodes(".title a") %>%
+  html_text() %>%
+  str_trim() %>%
+  gsub("\n|\t|[:[]:]", "", .) -> reply
+
+
+reply
+
+
+
+df <- data.frame(dat3)
+write.csv(df, "craw°á°ú.csv", row.names = FALSE)
+
+
 
 
 r <- GET("Resource URL", add_headers(TDCProjectKey='TDCProjectKey'))
