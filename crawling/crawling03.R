@@ -22,8 +22,8 @@ reply
 
 
 
-df <- data.frame(dat3)
-write.csv(df, "craw결과.csv", row.names = FALSE)
+df <- data.frame(reply)
+write.csv(df, "crawling/craw결과.csv", row.names = FALSE)
 
 
 

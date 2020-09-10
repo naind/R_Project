@@ -39,5 +39,5 @@ for(page_url in 1:10){
 df = data.frame(date_list, reply_list, star_list) # 데이터프레임
 colnames(df) = c("날짜","댓글","평점")
 
-write.csv(df, "crawling02_결과.csv", row.names = FALSE)
+write.csv(df, "crawling/crawling02_결과.csv", row.names = FALSE)
 
